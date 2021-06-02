@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import classes from "./AddUSer.module.css";
@@ -8,9 +8,16 @@ const AddUser = (props) => {
   const [enterAge, setEnterAge] = useState("");
   const addUserHandler = (e) => {
     e.preventDefault();
-    console.log(enterUsername, enterAge);
-    setEnterUsername("");
-    setEnterAge("");
+    if (enterUsername.trim().length === 0 || enterAge.trim().length === 0) {
+      return;
+    }
+    if (enterAge < 1) {
+      return;
+    } else {
+      console.log(enterUsername, enterAge);
+      setEnterUsername("");
+      setEnterAge("");
+    }
   };
   const userNameChangeHandler = (e) => {
     setEnterUsername(e.target.value);
@@ -18,6 +25,10 @@ const AddUser = (props) => {
   const ageChangeHandler = (e) => {
     setEnterAge(e.target.value);
   };
+
+  // useEffect(() => {
+
+  // });
 
   return (
     <>
